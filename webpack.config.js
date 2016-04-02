@@ -132,6 +132,7 @@ module.exports = function makeWebpackConfig () {
       test: /\.js$/,
       exclude: [
         /node_modules/,
+        /semantic/,
         /\.spec\.js$/
       ],
       loader: 'isparta-instrumenter'
@@ -165,7 +166,9 @@ module.exports = function makeWebpackConfig () {
         template: './app/index.html',
         inject: 'body'
       }),
-
+      new webpack.ProvidePlugin({
+        'jQuery': 'jquery'
+      }),
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
       // Extract css files
       // Disabled when in test mode or not in build mode
